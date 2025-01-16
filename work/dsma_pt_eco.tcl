@@ -18,7 +18,7 @@ lappend search_path ..
 # -farm is a required option, valid types are:
 #
 # -farm now (network of discrete workstations)
-set_host_options -load_factor 2 -num_processes 16 [info hostname] -max_cores 1
+set_host_options -load_factor 2 -num_processes 4 [info hostname] -max_cores 1
 
 set pairs {}
 foreach corner {ffg} {

@@ -33,7 +33,7 @@ for temp in ["85", "25"]:
 
 #base_corner = ("ssg", "0p72v", "125", "cworst")
 #base_corner = ("ffg", "1p05v", "m40", "cbest")
-base_corner = ("tt", "1v", "85", "rcworst")
+base_corner = ("ssg", "0p81v", "m40", "rcbest")
 BEOL_Corners = ["rcbest", "rcworst", "cbest", "cworst", "typical"]
 
 Designs = ["des", "mc_top", "ac97_top", "openGFX430", "wb_conmax_top", "eth_top", "vga_enh_top", "nova", "sasc_top", "spi_top", "tv80_core", "aes_cipher_top", "usbf_top", "pci_bridge32", "wb_dma_top", "tate_pairing"]

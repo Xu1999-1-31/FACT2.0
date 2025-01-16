@@ -229,29 +229,30 @@ def Optimize_Design(design, incremental=False):
     Write_Icc2_Scripts(design)
     Write_Pt_MMMC_Scripts(design)
     if not incremental: # new eco iteration
-        Run_Icc2_Script(f"{design}_copy_block.tcl")
-    # write eco verilog and sdc
-    Run_Icc2_Script(f"{design}_icc2_eco_rpt.tcl")    
+        Run_Icc2_Script(f"{design}_copy_block.tcl")   
     
-    # write timing report for corner selection
-    Write_Pt_Scripts(design)
-    Run_Pt_Script(f"{design}_pt_rpt.tcl", MMMC=False)
+    # # write timing report for corner selection
+    # Write_Pt_Scripts(design)
+    # Run_Pt_Script(f"{design}_pt_rpt.tcl", MMMC=False)
     
-    # predict MMMC timing
-    data_preparer = OptimizeDataPrepare.Optimize_Data_Prepare()
-    data_preparer.Prepare_Data(design)
-    TimingArc_Encoding.TimingArc_Encoder(design, optimize=True)
-    Predictor = MmmcPredictor_Training.loadPredictor()
-    # ... predict timing and choose the critical corners
+    # # predict MMMC timing
+    # data_preparer = OptimizeDataPrepare.Optimize_Data_Prepare()
+    # data_preparer.Prepare_Data(design)
+    # TimingArc_Encoding.TimingArc_Encoder(design, optimize=True)
+    # Predictor = MmmcPredictor_Training.loadPredictor()
+    # # ... predict timing and choose the critical corners
     
     # call pt for optimization
     Run_Pt_Script(f"{design}_dsma_pt_eco.tcl", MMMC=True)
     
-    # implement eco changes
-    Run_Icc2_Script(f"{design}_implement_eco.tcl")
+    # # implement eco changes
+    # Run_Icc2_Script(f"{design}_implement_eco.tcl")
     
-    # report tns after eco
-    Run_Pt_Script(f"{design}_dsma_pt_global.tcl", MMMC=True)
+    # # write eco verilog and sdc
+    # Run_Icc2_Script(f"{design}_icc2_eco_rpt.tcl") 
+    
+    # # report tns after eco
+    # Run_Pt_Script(f"{design}_dsma_pt_global.tcl", MMMC=True)
     
     Delete_Temp_Scripts(design)
     
@@ -271,4 +272,5 @@ def Report_Initial_TNS(design):
     
 if __name__ == "__main__": 
     # Build_MMMC_Data("sasc_top")
-    Report_Initial_TNS("spi_top")
+    # Report_Initial_TNS("spi_top")
+    Optimize_Design("spi_top", incremental=True)

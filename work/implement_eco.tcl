@@ -8,12 +8,10 @@ open_block ${bench}_eco
 link_block
 
 set fill_cell_list "*/FILL*"
-if {[file exists /home/jiajiexu/mylib/PT_Lab/TSMC28/outputs_eco_single_corner/${bench}/${bench}_ffg_rcmin_eco.tcl]} {
-    source /home/jiajiexu/mylib/PT_Lab/TSMC28/outputs_eco_single_corner/${bench}/${bench}_ffg_rcmin_eco.tcl
+if {[file exists ../PtECO/${bench}/change.tcl]} {
+    source ../PtECO/${bench}/change.tcl
 }
-if {[file exists /home/jiajiexu/mylib/PT_Lab/TSMC28/outputs_eco_single_corner/${bench}/${bench}_ssg_rcmax_eco.tcl]} {
-    source /home/jiajiexu/mylib/PT_Lab/TSMC28/outputs_eco_single_corner/${bench}/${bench}_ssg_rcmax_eco.tcl
-}
+
 place_eco_cells -eco_changed_cells -legalize_only -legalize_mode minimum_physical_impact -remove_filler_references $fill_cell_list
 set_app_options -name route.global.timing_driven    -value false
 set_app_options -name route.track.timing_driven     -value false
